@@ -49,6 +49,13 @@ export default class App extends Component {
       .catch(error => this.setState({ error, status: 'rejected' }));
   };
 
+  componentDidCatch(error, info) {
+    if (error) {
+      console.log(`Złapano błąd (${error}), (${info})`);
+      console.log(info);
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.query !== prevState.query) {
       this.setState({ status: 'pending', pictures: [], page: 1 });
